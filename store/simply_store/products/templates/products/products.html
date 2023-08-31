@@ -74,7 +74,8 @@
 
                         </div>
                         <div class="card-footer text-center">
-                            <button type="button" class="btn btn-outline-success">Отправить в корзину</button>
+                            <a class="btn btn-outline-success" href="{% url 'products:basket_add' product.id %}">
+                            Отправить в корзину</a>
                         </div>
                     </div>
                 </div>
@@ -107,7 +108,7 @@
 {% block footer %}
     <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Store 2023</p>
+        <p class="m-0 text-center text-white">Copyright &copy; BookForCoders 2023</p>
     </div>
     <!-- /.container -->
 </footer>
