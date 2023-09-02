@@ -8,7 +8,11 @@ User = get_user_model()
 class ProductCategory(models.Model):
     name = models.CharField(max_length=128, unique=True)
     description = models.TextField(null=True, blank=True)
-    
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
     def __str__(self):
         return self.name
 
@@ -23,6 +27,10 @@ class Product(models.Model):
     author = models.CharField(max_length=128)
     release_date = models.PositiveSmallIntegerField(default=0)
     amount_pages = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
 
     def __str__(self):
         return self.name
@@ -44,12 +52,11 @@ class Basket(models.Model):
 
     objects = BasketQuerySet.as_manager()
 
-
     def sum(self):
         return self.product.price * self.quantity
 
     def __str__(self):
-        return f'Корзина {self.user.name}'
+        return f'Корзина {self.user}'
 
 
 
