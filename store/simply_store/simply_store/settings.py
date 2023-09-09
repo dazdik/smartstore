@@ -11,6 +11,7 @@ SECRET_KEY = 'django-insecure-lkgw8u3u!u3#&3k!y6_w-2k5_4t9r#&a!qr)g#jo#yoki&55z+
 DEBUG = True
 
 ALLOWED_HOSTS = []
+DOMAIN_NAME = 'http://localhost:8000'
 
 
 # Application definition
@@ -123,3 +124,9 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'alberv0r@yandex.ru'
+
+EMAIL_USE_SSL = True
