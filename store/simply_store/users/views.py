@@ -1,12 +1,12 @@
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import HttpResponseRedirect
-from django.views.generic.base import TemplateView
 from django.urls import reverse, reverse_lazy
+from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 
 from products.models import Basket
-from users.forms import UsersLoginForm, UserProfileForm, UserRegistrationForm
+from users.forms import UserProfileForm, UserRegistrationForm, UsersLoginForm
 from users.models import EmailVerification, User
 
 
@@ -31,8 +31,6 @@ class UserProfileView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('users:profile', args=(self.object.id,))
 
-
-
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data()
         context['baskets'] = Basket.objects.filter(user=self.object)
@@ -45,11 +43,13 @@ class EmailVerificationView(TemplateView):
     def get(self, request, *args, **kwargs):
         code = kwargs['code']
         user = User.objects.get(email=kwargs['email'])
-        email_verifications = EmailVerification.objects.filter(code=code, user=user)
-        if email_verifications.exists() and not email_verifications.first().is_expired():
+        email_verifications = EmailVerification.objects.filter(code=code,
+                                                               user=user)
+        if email_verifications.exists() and (
+                not email_verifications.first().is_expired()):
             user.is_verify_email = True
             user.save()
-            return super(EmailVerificationView, self).get(request, *args, **kwargs)
+            return super(EmailVerificationView, self).get(request, *args,
+                                                          **kwargs)
         else:
             return HttpResponseRedirect(reverse('index'))
-
