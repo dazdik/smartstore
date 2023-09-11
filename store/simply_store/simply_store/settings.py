@@ -66,8 +66,12 @@ WSGI_APPLICATION = 'simply_store.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'store_db',
+        'USER': 'dazdik',
+        'PASSWORD': 'bkfcoders',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -131,3 +135,8 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'alberv0r@yandex.ru'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_SSL = True
+# CREATE DATABASE store_db;
+
+# postgres=# CREATE ROLE dazdik with password 'bkfcoders';                                 ^
+# postgres=# ALTER ROLE "dazdik" WITH LOGIN;
+# postgres=# GRANT ALL PRIVILEGES ON DATABASE "store_db" to dazdik;
