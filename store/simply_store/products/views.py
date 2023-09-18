@@ -4,7 +4,7 @@ from django.shortcuts import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
-from products.models import Basket, Product
+from products.models import Basket, Product, ProductCategory
 
 User = get_user_model()
 
@@ -23,6 +23,11 @@ class ProductsListView(ListView):
         category_id = self.kwargs.get('category_id')
         return queryset.filter(
             category_id=category_id) if category_id else queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductsListView, self).get_context_data()
+        context['categories'] = ProductCategory.objects.all()
+        return context
 
 
 @login_required

@@ -9,9 +9,9 @@ class ProductCategory(models.Model):
     description = models.TextField(null=True, blank=True)
 
     class Meta:
+
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
-        ordering = ['id']
 
     def __str__(self):
         return self.name
