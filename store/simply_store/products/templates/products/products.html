@@ -1,5 +1,5 @@
 {% extends 'products/base.html' %}
-
+{% load humanize %}
 {% load static %}
 {% block title %}
     Каталог товаров | BookForCoders
@@ -69,7 +69,7 @@
                                     <h4 class="card-title">
                                         <a href="#">{{ product.name }}</a>
                                     </h4>
-                                    <h5>{{ product.price }} руб.</h5>
+                                    <h5>{{ product.price|intcomma }} руб.</h5>
                                 </div>
                                 <div class="card-footer text-center">
                                     <a class="btn btn-outline-success"
