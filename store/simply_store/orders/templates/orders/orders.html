@@ -1,5 +1,8 @@
 {% extends 'products/base.html' %}
 {% load humanize %}
+{% block title %}
+    Заказы | BookForCoders
+{% endblock %}
 {% block content %}
     <section>
         <div class="container pt-5">
@@ -24,7 +27,7 @@
                                 <td>{{ order.created|naturaltime }}</td>
                                 <td>{{ order.basket_history.total_sum|intcomma }} руб.</td>
                                 <td>
-                                    <a href="{% url 'orders:order' order.id %}">просмотреть</a>
+                                    <a href="{% url 'orders:order_detail' order.id %}">просмотреть</a>
                                 </td>
                             </tr>
                         {% endfor %}

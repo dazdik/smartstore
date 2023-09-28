@@ -11,4 +11,3 @@ class OrderAdmin(admin.ModelAdmin):
               ('email', 'address'),
               'basket_history', 'status', 'initiator')
     readonly_fields = ('id', 'created')
-
