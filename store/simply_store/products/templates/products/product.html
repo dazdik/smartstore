@@ -1,0 +1,64 @@
+{% extends 'products/base.html' %}
+{% load humanize %}
+{% load static %}
+{% block title %}
+{{ product.name }}
+{% endblock %}
+{% block css %}
+    <link href="{% static 'vendor/css/products.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container col-lg-9 col-sm-9">
+  <div class="row">
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <b>Автор:</b><br> {{ product.author }}
+        </li>
+
+        <li class="list-group-item">
+          <b>Дата выхода:</b><br> {{ product.release_date }}
+        </li>
+
+        <li class="list-group-item">
+          <b>Количество страниц:</b><br> {{ product.amount_pages }}
+        </li>
+
+          <li class="list-group-item">
+            <b>Категория:</b><br>
+            <a href="{% url 'products:category' product.category.id %}" >{{ product.category }}</a>
+          </li>
+          <li class="list-group-item">
+            <b>Цена:</b><br> {{ product.price|intcomma }} руб.
+
+          </li>
+             <a class="btn btn-outline-success" href="{% url 'products:basket_add' product.id %}">
+                                        Отправить в корзину</a>
+      </ul>
+
+
+    <article class="col-12 col-md-9">
+
+      <img class="product-image" src="{{ product.image.url }}" alt="" >
+
+      <p>
+        {{ product.description|linebreaks }}
+      </p>
+
+
+    </article>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    <footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; BookForCoders 2023</p>
+    </div>
+    <!-- /.container -->
+</footer>
+{% endblock %}
+

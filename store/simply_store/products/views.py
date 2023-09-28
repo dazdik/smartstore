@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import HttpResponseRedirect, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
@@ -27,6 +27,16 @@ class ProductsListView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductsListView, self).get_context_data()
         context['categories'] = ProductCategory.objects.all()
+        return context
+
+class ProductDetailView(TemplateView):
+    template_name = 'products/product.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product_id = kwargs['pk']
+        product = get_object_or_404(Product, id=product_id)
+        context['product'] = product
         return context
 
 
