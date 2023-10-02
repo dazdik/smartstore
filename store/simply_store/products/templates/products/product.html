@@ -10,7 +10,9 @@
 
 {% block content %}
 <div class="container col-lg-9 col-sm-9">
+
   <div class="row">
+      <img class="product-image" src="{{ product.image.url }}" align="right" alt="">
 
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
@@ -35,12 +37,13 @@
           </li>
              <a class="btn btn-outline-success" href="{% url 'products:basket_add' product.id %}">
                                         Отправить в корзину</a>
+
       </ul>
 
 
-    <article class="col-12 col-md-9">
+    <article class="col-9">
 
-      <img class="product-image" src="{{ product.image.url }}" alt="" >
+
 
       <p>
         {{ product.description|linebreaks }}
