@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg',
 
     'allauth',
     'allauth.account',
@@ -235,7 +236,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'user:email',
         ],
     }
-    }
+}
 
 SOCIALACCOUNT_QUERY_EMAIL = True
 
